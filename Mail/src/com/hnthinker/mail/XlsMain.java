@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-//参考 http://www.cnblogs.com/hongten/archive/2012/02/22/java2poi.html  
+ 
 public class XlsMain {  
 	private static FormulaEvaluator evaluator;
 //    public static void main(String[] args) {  
@@ -101,7 +101,7 @@ public class XlsMain {
       }
 
     public List<String []> readXls() throws IOException {  
-        InputStream is = new FileInputStream("F:\\工资.xlsx");  
+        InputStream is = new FileInputStream("工资.xlsx");  
         XSSFWorkbook hssfWorkbook = new XSSFWorkbook(is); 
         evaluator=hssfWorkbook.getCreationHelper().createFormulaEvaluator();
         List<String []> list = new ArrayList<String []>();  
