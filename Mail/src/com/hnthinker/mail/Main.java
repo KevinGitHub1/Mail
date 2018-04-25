@@ -8,55 +8,55 @@ import com.hnthinker.mail.XlsMain;
 public class Main {  
   
     public static void main(String[] args) {  
-        //Õâ¸öÀàÖ÷ÒªÊÇÉèÖÃÓÊ¼ş     
+        //è¿™ä¸ªç±»ä¸»è¦æ˜¯è®¾ç½®é‚®ä»¶     
         MailSenderInfo mailInfo = new MailSenderInfo();  
         mailInfo.setMailServerHost("smtp.exmail.qq.com");  
         mailInfo.setMailServerPort("25");  
         mailInfo.setValidate(true);  
-        //ÉèÖÃ·¢ËÍÓÊÏäºÍ½ÓÊÕÓÊÏä  
+        //è®¾ç½®å‘é€é‚®ç®±å’Œæ¥æ”¶é‚®ç®±  
         mailInfo.setUserName("zhangmk@hnthinker.com");  
-        mailInfo.setPassword("zhangmksw123");//ÄúµÄÓÊÏäÃÜÂë      
+        mailInfo.setPassword("");//æ‚¨çš„é‚®ç®±å¯†ç       
         mailInfo.setFromAddress("zhangmk@hnthinker.com");  
 //        mailInfo.setToAddress("***@qq.com");  
-        //mailInfo.setToAddress("1291665093@qq.com");Ğ¡ÑÒÓÊÏä  
+        //mailInfo.setToAddress("1291665093@qq.com");å°å²©é‚®ç®±  
         //mailInfo.setToAddress("772093950@qq.com"); 
-        mailInfo.setSubject("²âÊÔ±êÌâ");  
-        mailInfo.setContent("ÉèÖÃÓÊÏäÄÚÈİ ²âÊÔ");  
-        //Õâ¸öÀàÖ÷ÒªÀ´·¢ËÍÓÊ¼ş     
+        mailInfo.setSubject("æµ‹è¯•æ ‡é¢˜");  
+        mailInfo.setContent("è®¾ç½®é‚®ç®±å†…å®¹ æµ‹è¯•");  
+        //è¿™ä¸ªç±»ä¸»è¦æ¥å‘é€é‚®ä»¶     
         SimpleMailSender sms = new SimpleMailSender();  
         /* 
          *  
-        sms.sendTextMail(mailInfo);//·¢ËÍÎÄÌå¸ñÊ½     
-        sms.sendHtmlMail(mailInfo);//·¢ËÍhtml¸ñÊ½    
+        sms.sendTextMail(mailInfo);//å‘é€æ–‡ä½“æ ¼å¼     
+        sms.sendHtmlMail(mailInfo);//å‘é€htmlæ ¼å¼    
          */  
-        //ÏÂÃæÎª¶ÁÈ¡excelÊı¾İÈ»ºó·¢ËÍ  
+        //ä¸‹é¢ä¸ºè¯»å–excelæ•°æ®ç„¶åå‘é€  
         XlsMain xlsMain = new XlsMain();  
         try {  
             List<String []> list = xlsMain.readXls();  
-            String [] title0 = list.get(0);//ÄêÔÂÈÕ  
+            String [] title0 = list.get(0);//å¹´æœˆæ—¥  
             String [] title1 = list.get(1);  
             for(int i = 2; i < 3; i++){  
                 String [] s = list.get(i); 
                 mailInfo.setToAddress(s[2]);
                 StringBuilder sb = new StringBuilder(); 
                 sb.append(" <table background-color =\"gray\" width=\"400px\" border=\"5\">");
-                sb.append("<tr><th align=\"center\" colspan=\"2\">" + title0[0] + "</th><tr/>"); //±êÌâ
+                sb.append("<tr><th align=\"center\" colspan=\"2\">" + title0[0] + "</th><tr/>"); //æ ‡é¢˜
                 for(int j = 0; j < 19; j++){  
                     if(j == 2){  
                     	continue;
                     }
-                    if(!title1[j].equals("0.0")){  //ÊÂÏî
+                    if(!title1[j].equals("0.0")){  //äº‹é¡¹
                         sb.append("<tr><td>"+title1[j] + "</td>");  
                     }  
-                    sb.append("<td>"+s[j] + "</td></tr>");  //Öµ
+                    sb.append("<td>"+s[j] + "</td></tr>");  //å€¼
                 }
                 sb.append("</table>");
-                sb.append("<br/>±¾ÓÊ¼şÓÉÏµÍ³×Ô¶¯·¢ËÍ£¬Êµ¼Ê¹¤×Ê·¢·ÅÒÔ¹¤×ÊÌõÎª×¼£¡<br/>"); 
-                sb.append("<br/>ÓĞÒÉÎÊÇëÁªÏµ£ºÕÅÃ÷¿­ zhangmk@hnthinker.com  0371-8888-888£¡<br/>");  
-                sb.append("<br/><font color='red'>ÏµÍ³ÓÊ¼ş£¬ÇëÎğÖ±½Ó»Ø¸´£¡</font><br/>");  
-                mailInfo.setSubject(s[1]  + "-¹¤×ÊĞÅÏ¢");  
+                sb.append("<br/>æœ¬é‚®ä»¶ç”±ç³»ç»Ÿè‡ªåŠ¨å‘é€ï¼Œå®é™…å·¥èµ„å‘æ”¾ä»¥å·¥èµ„æ¡ä¸ºå‡†ï¼<br/>"); 
+                sb.append("<br/>æœ‰ç–‘é—®è¯·è”ç³»ï¼šå¼ æ˜å‡¯ zhangmk@hnthinker.com  0371-8888-888ï¼<br/>");  
+                sb.append("<br/><font color='red'>ç³»ç»Ÿé‚®ä»¶ï¼Œè¯·å‹¿ç›´æ¥å›å¤ï¼</font><br/>");  
+                mailInfo.setSubject(s[1]  + "-å·¥èµ„ä¿¡æ¯");  
                 mailInfo.setContent(sb.toString());  
-                sms.sendHtmlMail(mailInfo);//·¢ËÍÎÄÌå¸ñÊ½     
+                sms.sendHtmlMail(mailInfo);//å‘é€æ–‡ä½“æ ¼å¼     
             }  
         } catch (IOException e) {  
            e.printStackTrace();  
