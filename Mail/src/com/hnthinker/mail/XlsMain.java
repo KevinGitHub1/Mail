@@ -100,8 +100,8 @@ public class XlsMain {
           return cellValue;
       }
 
-    public List<String []> readXls() throws IOException {  
-        InputStream is = new FileInputStream("¹¤×Ê.xlsx");  
+    public List<String []> readXls(String path) throws IOException {  
+        InputStream is = new FileInputStream(path);  
         XSSFWorkbook hssfWorkbook = new XSSFWorkbook(is); 
         evaluator=hssfWorkbook.getCreationHelper().createFormulaEvaluator();
         List<String []> list = new ArrayList<String []>();  
